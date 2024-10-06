@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="col-12 text-end mb-3">
+    <input
+      type="text"
+      class="form-control w-auto"
+      placeholder="Buscar libros..."
+      style="width: 200px"
+      [(ngModel)]="genero"
+    />
+  </div>
+
+  <div class="row">
+    <div class="col-12 mx-3"> <!-- Cambié col-14 a col-12 -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Título</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Género</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of libros; track item) {
+
+            @if (!genero || item.genre[idiomaActual]?.toLowerCase().includes(genero?.toLowerCase())) {
+              <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.title[idiomaActual] }}</td>
+                <td>{{ item.author[idiomaActual] }}</td>
+                <td>{{ item.genre[idiomaActual] }}</td>
+                <td>
+                  <button
+                    class="btn btn-info"
+                    (click)="item.showDetails = !item.showDetails"
+                  >
+                    {{ item.showDetails ? "Mostrar Menos" : "Mostrar Más" }}
+                  </button>
+                </td>
+              </tr>
+
+              @if (item.showDetails) {
+                <tr>
+                  <td colspan="5">
+                    <strong>Detalles Adicionales:</strong>
+                    <p>Precio: {{ item.price }}</p>
+                    <p>Año: {{ item.year }}</p>
+                  </td>
+                </tr>
+              }
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

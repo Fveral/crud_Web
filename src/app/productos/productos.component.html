@@ -1,0 +1,20 @@
+<div class="row">
+  <h2 class="text-center">Información de los Libros</h2>
+</div>
+<br />
+@if(nocturno == false) {
+<app-tabla1 [libros]="libros" [idiomaActual]="idiomaActual"></app-tabla1>
+} @else {
+<app-tabla2 [libros]="libros" [idiomaActual]="idiomaActual"></app-tabla2>
+}
+
+<div class="container mt-3">
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-primary" (click)="cambioVista()">
+      Diurno/Nocturno
+    </button>
+    <button class="btn btn-primary" (click)="cambiarIdioma()">
+      Cambiar a {{ idiomaActual === "es" ? "Inglés" : "Español" }}
+    </button>
+  </div>
+</div>
